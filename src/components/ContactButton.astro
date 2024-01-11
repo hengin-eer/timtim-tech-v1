@@ -1,0 +1,44 @@
+---
+import { Icon } from "astro-iconify";
+---
+
+<a href="mailto:timdaik@gmail.com" class="contact-button">
+    <Icon name="ri:send-plane-line" />
+    <div class="contact-text-area">
+        <p class="contact-p">Contact Me</p>
+        <p class="address-p">timdaik@gmail.com</p>
+    </div>
+</a>
+
+<style>
+    .contact-button {
+        width: max-content;
+        padding: 14px 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        background-color: var(--deep-green);
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+
+        > svg {
+            height: 32px;
+            color: var(--green);
+        }
+
+        .contact-text-area {
+            .contact-p {
+                font-size: 22px;
+                font-weight: 500;
+                color: var(--white);
+            }
+            .address-p {
+                font-size: 14px;
+                font-weight: 400;
+                color: var(--white);
+            }
+        }
+    }
+</style>

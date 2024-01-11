@@ -1,0 +1,63 @@
+---
+import { Icon } from "astro-iconify";
+import Link from "./Link.astro";
+---
+
+<header>
+    <h1>timtim.tech</h1>
+    <nav>
+        <ul>
+            <li>
+                <Link href="https://github.com/hengin-eer/">
+                    <Icon name="ri:github-line" />
+                </Link>
+            </li>
+            <li>
+                <Link href="https://x.com/tim_daik">
+                    <Icon name="ri:twitter-x-line" />
+                </Link>
+            </li>
+            <li>
+                <Link href="https://instagram.com/timdaik">
+                    <Icon name="ri:instagram-line" />
+                </Link>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<style>
+    header {
+        height: 80px;
+        width: 100%;
+        padding-inline: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h1 {
+            font-size: 24px;
+            color: var(--black);
+        }
+
+        nav {
+            ul {
+                height: 50px;
+                padding-inline: 20px;
+                border-radius: 25px;
+                background: var(--green);
+                list-style: none;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+                li > a > svg {
+                    height: 30px;
+                    color: var(--black);
+                    text-decoration: none;
+                    vertical-align: bottom;
+                }
+            }
+        }
+    }
+</style>
