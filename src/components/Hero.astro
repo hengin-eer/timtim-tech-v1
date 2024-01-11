@@ -1,6 +1,5 @@
 ---
 import ContactButton from "./ContactButton.astro";
-import { Icon } from "astro-iconify";
 ---
 <section class="hero">
     <div class="hero-wrapper">
@@ -23,7 +22,7 @@ import { Icon } from "astro-iconify";
         </div>
 
         <div class="right-part">
-            <img src="/hero.jpg" alt="hero" />
+            <img class="hero-img" src="/hero.jpg" alt="hero" />
         </div>
     </div>
 </section>
@@ -89,6 +88,7 @@ import { Icon } from "astro-iconify";
                     width: 30vw;
                     aspect-ratio: 1/2;
                     object-fit: cover;
+                    animation: animateImg 1s ease-in-out;
                 }
             }
         }
