@@ -1,0 +1,30 @@
+---
+import { Icon } from "astro-iconify";
+import Link from "../Link.astro";
+const SNSLinkData = [
+    {
+        link: "https://github.com/hengin-eer/",
+        iconName: "ri:github-line",
+    },
+    {
+        link: "https://x.com/tim_daik",
+        iconName: "ri:twitter-x-line",
+    },
+    {
+        link: "https://instagram.com/timdaik",
+        iconName: "ri:instagram-line",
+    },
+];
+---
+
+<ul class="flex items-center gap-5 px-6 py-3 rounded-full bg-black h-max w-max">
+    {
+        SNSLinkData.map((item) => (
+            <li class="size-8 text-primary-green">
+                <Link href={item.link}>
+                    <Icon name={item.iconName} />
+                </Link>
+            </li>
+        ))
+    }
+</ul>
