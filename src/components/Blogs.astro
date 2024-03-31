@@ -1,0 +1,34 @@
+---
+import { contentfulClient } from "../lib/contentful.js";
+import BlogCard from "./BlogCard.astro";
+
+const entries = await contentfulClient.getEntries({
+    content_type: "blog",
+});
+---
+
+<section class="blogs">
+    <h2>Blogs</h2>
+    <ul>
+        {
+            entries.items.map((item) => (
+                <BlogCard
+                    title={item.fields.title}
+                    slug={item.fields.slug}
+                    updatedAt={new Date(item.sys.updatedAt).toLocaleDateString()}
+                    eyecatch={item.fields.eyecatch.fields.file.url}
+                />
+            ))
+        }
+    </ul>
+</section>
+
+<style>
+    .blogs {
+        h2 {
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+    }
+</style>
