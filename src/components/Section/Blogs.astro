@@ -1,6 +1,6 @@
 ---
-import { contentfulClient } from "../lib/contentful.js";
-import BlogCard from "./BlogCard.astro";
+import { contentfulClient } from "../../lib/contentful.js";
+import BlogCard from "../BlogCard.astro";
 
 const entries = await contentfulClient.getEntries({
     content_type: "blog",
