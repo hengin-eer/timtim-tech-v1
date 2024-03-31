@@ -1,5 +1,9 @@
 ---
-import Header from "../components/Header.astro";
+import Header from "../components/Header/Header.astro";
+import '@fontsource/zen-kaku-gothic-new';
+import '@fontsource/hina-mincho';
+import '@fontsource/shippori-antique-b1';
+
 interface Props {
 	title: string;
 }
@@ -42,7 +46,7 @@ const { title } = Astro.props;
 		--dark: #1a293d;
 	}
 	html {
-		font-family: system-ui, sans-serif;
+		font-family: 'Zen Kaku Gothic New';
 		background: var(--white);
 		background-size: 224px;
 	}
@@ -57,9 +61,14 @@ const { title } = Astro.props;
 			Courier New,
 			monospace;
 	}
-
 	.wrapper {
 		position: relative;
 		overflow-x: hidden;
+	}
+	.font-hina {
+		font-family: 'Hina Mincho';
+	}
+	.font-shippori {
+		font-family: 'Shippori Antique B1';
 	}
 </style>
