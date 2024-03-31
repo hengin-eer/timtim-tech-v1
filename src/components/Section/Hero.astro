@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+import ContactButton from "../button/ContactButton.astro";
+const profileTags = ["🧑‍🎓 Colledge Student", "💻 Programmer", "🐟 Fish lover"];
+---
+
+<section class="max-w-5xl mx-auto my-[80px] flex items-center justify-between">
+    <div class="w-min">
+        <h1 class="w-max text-5xl leading-[1.6] font-hina">
+            ようこそ、<br />
+            Tim daikの世界へ
+        </h1>
+        <div class="py-8 flex flex-wrap gap-4">
+            {profileTags.map((texts) => <div class=" px-4 py-1 rounded-full border-black border-2">{texts}</div>)}
+        </div>
+        <ContactButton />
+    </div>
+    <div class="relative">
+        <Image class="hero-image" src={"/hero.jpg"} alt="Timdaik's picture" height={480} width={480} />
+        <img class="h-[480px] absolute top-0 left-[50%] translate-x-[-50%]" src={"/hero-image-subframe.svg"} alt="subframe" />
+    </div>
+</section>
+
+<style>
+    .hero-image {
+        mask-image: url('/hero-image-mask.svg');
+        mask-repeat: no-repeat;
+        mask-position: center;
+    }
+</style>
