@@ -1,7 +1,35 @@
 ---
+import WorksTag from "../Tag/WorksTag.astro";
 import SectionHeading from "./SectionHeading.astro";
+import WorksOfferRead from "../WorksOfferRead.astro";
 ---
 
-<section>
+<section class="w-full mt-10">
     <SectionHeading title="Works" isBlue={true} />
+    <p class="max-w-[600px] mx-auto my-10 text-lg">
+        私が作ってきたもの、作っているものを載せています。ご意見等ございましたらお気軽にお問い合わせください！
+    </p>
+    <div class="mx-auto h-10 w-[1px] rounded-sm bg-black"></div>
+    <div class="max-w-[800px] w-[90%] mx-auto mt-5">
+        <img
+            class="w-max aspect-video object-cover mx-auto brightness-110 contrast-75 shadow-2xl"
+            src="/programming.jpg"
+            alt="画像"
+        />
+        <h3 class="my-8 text-4xl text-center">このポートフォリオサイト</h3>
+        <WorksTag title="技術スタック" />
+        <ul class="flex items-center gap-8">
+            <!-- TODO: CMSから取ってくるデータ群 -->
+            <li>
+                <img class="size-10 drop-shadow-md" src="/favicon.svg" alt="astro" />
+            </li>
+        </ul>
+        <WorksTag title="こだわりポイント" />
+        <p class="text-lg leading-[1.8]">
+            数学的に証明された美しく、わびさびなデザインを心掛けてポートフォリオサイトを制作しました。各コンテンツデータをContentfulで管理しているため、保守性と美しいコーディングを両立させています。
+            そしてAstroのSSGを用いているため高速なページ配信が実現しています。
+        </p>
+        <WorksOfferRead />
+        
+    </div>
 </section>
