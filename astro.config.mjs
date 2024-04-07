@@ -7,4 +7,10 @@ export default defineConfig({
   integrations: [tailwind()],
   site: 'https://hengin-eer.github.io',
   base: '/timtim-tech-v1',
+  vite: {
+    optimizeDeps: {
+      noDiscovery: true,
+      include: []
+    }
+  }
 });
