@@ -1,15 +1,23 @@
-<!-- ---
+---
+import Layout from "../../layouts/Layout.astro";
 import { contentfulClient } from "../../lib/contentful";
+
+interface Props {
+    title: string;
+    updatedAt: string;
+    eyecatch: string;
+    markdown: string;
+}
 
 export async function getStaticPaths() {
     const contents = await contentfulClient.getEntries({
-        content_type: 'blog',
+        content_type: "blog",
     });
     return contents.items.map((item) => ({
         params: {
             slug: item.fields.slug,
         },
-        Props: {
+        props: {
             title: item.fields.title,
             updatedAt: new Date(item.sys.updatedAt).toLocaleDateString(),
             eyecatch: item.fields.eyecatch.fields.file.url,
@@ -21,7 +29,9 @@ const { slug } = Astro.params;
 const { title, updatedAt, eyecatch, markdown } = Astro.props;
 ---
 
-<img src={eyecatch} alt={title}>
-<h1>{title}</h1>
-<p>{updatedAt}</p>
-<article set:text={markdown}></article> -->
+<Layout title={title}>
+    <img src={eyecatch} alt={title} />
+    <h1>{title}</h1>
+    <p>{updatedAt}</p>
+    <article set:text={markdown} />
+</Layout>
