@@ -1,0 +1,11 @@
+name: タスクリスト
+description: サクッとタスクを追加したい時。又はそれほど検討しなくていい新規機能について。
+title: ":white_check_mark: feat: "
+body:
+  - type: textarea
+    id: tasklist
+    attributes:
+      label: タスク
+      description: タスクを記入してください。順次インデントで階層分けすること。
+      value: |
+        - [ ] 
