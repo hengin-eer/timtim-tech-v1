@@ -1,0 +1,53 @@
+name: バグ報告
+description: アプリケーションで発生したバグの報告を行います。
+title: ":bug: fix: "
+labels: ["bug"]
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: バグの概要
+      description: どんなバグが発生したか簡潔に説明してください。
+      placeholder: "画面が真っ白になった。"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: バグの再現手順
+      description: バグが発生するまでに行った操作を順番に記述してください。
+      placeholder: |
+        1. パソコンを起動
+        2. ブラウザを起動
+        3. サイトにアクセス
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待する動作
+      description: バグが発生しなかった通常時、どうなるべきか記述してください。
+      placeholder: "画面が表示される。"
+    validations:
+      required: false
+  - type: textarea
+    id: actual
+    attributes:
+      label: 実際の動作
+      description: |
+        バグが発生したときにどうなったか記述してください。
+        発生した時の画面やエラーメッセージなどがあれば、スクリーンショットを添付してください。
+      placeholder: "画面が真っ白になった。"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 環境情報（バグの種類より記載するか否か判断）
+      description: バグが発生した環境に関する情報を記述してください
+      value: |
+        - OS: Windows 10
+        - ブラウザ: MicroSoft Edge
+        - バージョン: 110.0
+    validations:
+      required: false
