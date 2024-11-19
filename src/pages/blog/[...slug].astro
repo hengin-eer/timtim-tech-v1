@@ -33,13 +33,15 @@ console.log("😨😨😨", blog.cover);
 				src={blog.cover.src}
 				alt="サムネイル画像"
 			/>
-			<h1 class="max-w-[800px] text-xl md:text-2xl leading-[1.6]">{blog.title}</h1>
+			<h1 class="max-w-[800px] text-xl md:text-2xl leading-[1.6]">
+				{blog.title}
+			</h1>
 			<div class="mt-7 mb-4 flex gap-5">
 				<p>
 					<span>筆者: </span>
-					<Link classes="" href={`https://x.com/${blog.author}`}
-						>@{blog.author}</Link
-					>
+					<Link href={`https://x.com/${blog.author}`}>
+						<span class="text-primary-dark-green underline">@{blog.author}</span>
+					</Link>
 				</p>
 				<p>最終更新: {formattedDate}</p>
 			</div>
@@ -97,6 +99,10 @@ console.log("😨😨😨", blog.cover);
 	#contents p + p {
 		margin-top: 20px;
 	}
+	#contents a {
+		text-decoration: underline;
+		color: var(--primary-dark-green);
+	}
 	#contents ul,
 	ol {
 		margin-block: 24px;
@@ -150,15 +156,16 @@ console.log("😨😨😨", blog.cover);
 		}
 	}
 	#contents table {
-    display: block;
+		display: block;
 		margin-block: 20px;
 		width: 100%;
 		border-collapse: collapse;
-    font-size: 16px;
-    line-height: 1.5;
-    word-break: normal;
+		font-size: 16px;
+		line-height: 1.5;
+		word-break: normal;
 
-		th, td {
+		th,
+		td {
 			padding: 8px;
 			border: solid 1px var(--gray-base);
 		}
