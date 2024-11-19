@@ -1,0 +1,170 @@
+---
+import Link from "@components/Link.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+	const blogEntries = await getCollection("blog");
+	return blogEntries.map((entry) => ({
+		params: { slug: entry.slug },
+		props: { entry, blog: entry.data },
+	}));
+}
+
+const { entry, blog } = Astro.props;
+const { Content } = await entry.render();
+
+const date = new Date(blog.updatedAt);
+const formattedDate =
+	date.getFullYear() +
+	"/" +
+	String(date.getMonth() + 1).padStart(2, "0") +
+	"/" +
+	String(date.getDate()).padStart(2, "0");
+
+console.log("😨😨😨", blog.cover);
+---
+
+<Layout title={`${blog.title} | timtim.tech`}>
+	<main class="w-full max-w-5xl mx-auto px-5 my-10">
+		<div id="header" class="flex flex-col items-center">
+			<img
+				class="w-full max-w-[800px] aspect-video object-cover mx-auto mb-8 rounded-xl"
+				src={blog.cover.src}
+				alt="サムネイル画像"
+			/>
+			<h1 class="max-w-[800px] text-xl md:text-2xl leading-[1.6]">{blog.title}</h1>
+			<div class="mt-7 mb-4 flex gap-5">
+				<p>
+					<span>筆者: </span>
+					<Link classes="" href={`https://x.com/${blog.author}`}
+						>@{blog.author}</Link
+					>
+				</p>
+				<p>最終更新: {formattedDate}</p>
+			</div>
+			<dir class="flex gap-5 items-center">
+				<p>タグ:</p>
+				<ul class="flex gap-2">
+					{
+						blog.tag.map((tag) => (
+							<li class="px-3 py-[2px] border rounded-full">{tag}</li>
+						))
+					}
+				</ul>
+			</dir>
+		</div>
+		<div id="contents" class="py-10">
+			<Content />
+		</div>
+	</main>
+</Layout>
+
+<style is:global>
+	#contents {
+		line-height: 1.8;
+	}
+	#contents > :first-child {
+		margin-top: 0;
+	}
+	#contents h1 {
+		margin-block: 52px 16px;
+		padding-bottom: 6px;
+		border-bottom: solid 1px var(--gray-base);
+		font-size: 32px;
+		line-height: 1.6;
+	}
+	#contents h2 {
+		margin-block: 40px 16px;
+		padding-bottom: 6px;
+		border-bottom: solid 1px var(--gray-base);
+		font-size: 28px;
+		line-height: 1.5;
+	}
+	#contents h3 {
+		margin-block: 32px 12px;
+		font-size: 24px;
+		line-height: 1.5;
+	}
+	#contents h1 + p,
+	#contents h2 + p,
+	#contents h3 + p,
+	#contents h4 + p,
+	#contents h5 + p,
+	#contents h6 + p {
+		margin-top: 4px;
+	}
+	#contents p + p {
+		margin-top: 20px;
+	}
+	#contents ul,
+	ol {
+		margin-block: 24px;
+		padding-left: 28px;
+
+		> li::marker {
+			color: var(--gray-base);
+		}
+	}
+	#contents ol ol,
+	#contents ol ul,
+	#contents ul ol,
+	#contents ul ul {
+		margin-block: 4px;
+	}
+	#contents ul {
+		list-style: disc;
+	}
+	#contents ol {
+		list-style: decimal;
+	}
+	#contents img {
+		margin-block: 24px;
+		max-width: 100%;
+		height: auto;
+	}
+	#contents blockquote {
+		margin-block: 20px;
+		padding-block: 4px;
+		padding-left: 12px;
+		border-left: solid 3px var(--gray-base);
+
+		p + p {
+			margin-top: 0px;
+		}
+	}
+	#contents pre {
+		margin-block: 20px;
+		border-radius: 8px;
+		display: flex;
+
+		&::after {
+			content: "";
+			width: 8px;
+			flex-shrink: 0;
+		}
+
+		> code {
+			display: block;
+			padding: 16px 20px;
+		}
+	}
+	#contents table {
+    display: block;
+		margin-block: 20px;
+		width: 100%;
+		border-collapse: collapse;
+    font-size: 16px;
+    line-height: 1.5;
+    word-break: normal;
+
+		th, td {
+			padding: 8px;
+			border: solid 1px var(--gray-base);
+		}
+
+		th {
+			background: var(--gray-light);
+		}
+	}
+</style>
