@@ -38,10 +38,13 @@ const { title } = Astro.props;
 		box-sizing: border-box;
 	}
 	:root {
-		--primary-green: #18EF95;
+		--primary-green: #18ef95;
 		--primary-dark-green: #00b86b;
-		--primary-blue: #13AED0;
+		--primary-blue: #13aed0;
+		--primary-red: #f6444f;
 		--white: #ffffff;
+		--gray-base: #9ebcca;
+		--gray-light: #edf0f7;
 		--black: #000000;
 		--accent: 136, 58, 234;
 	}
@@ -52,6 +55,7 @@ const { title } = Astro.props;
 		scroll-behavior: smooth;
 	}
 	a {
+		text-decoration: underline;
 		color: var(--primary-dark-green);
 	}
 	code {
