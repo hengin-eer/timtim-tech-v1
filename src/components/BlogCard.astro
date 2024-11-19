@@ -1,64 +1,25 @@
 ---
 interface Props {
-    title: any;
-    slug: any;
-    updatedAt: any;
-    eyecatch: any;
-};
+	title: string;
+	slug: string;
+	updatedAt: string;
+	eyecatch: string;
+}
 
 const { title, slug, updatedAt, eyecatch } = Astro.props;
 ---
 
-<div class="blog-card">
-    <img src={eyecatch} alt={title} />
-    <div>
-        <h3>{title}</h3>
-        <p>{updatedAt}</p>
-        <a href={`/blog/${slug}`}>Read More</a>
-    </div>
-</div>
-
-<style>
-    .blog-card {
-        width: 320px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-
-        img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        div {
-            width: 100%;
-            padding: 10px 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            h3 {
-                font-size: 20px;
-                font-weight: 600;
-                color: var(--black);
-            }
-
-            p {
-                margin-top: 6px;
-                font-size: 14px;
-                font-weight: 400;
-                color: var(--black);
-            }
-
-            a {
-                font-size: 16px;
-                color: var(--black);
-                text-decoration: none;
-            }
-        }
-    }
-</style>
+<a
+	class="w-full md:max-w-[480px] flex flex-col justify-start gap-6"
+	href={`/blog/${slug}`}
+>
+	<img
+		class="w-full aspect-video object-cover rounded-xl"
+		src={eyecatch}
+		alt={title}
+	/>
+	<div>
+		<p class="mb-2 text-sm">{updatedAt}</p>
+		<h3 class="text-xl">{title}</h3>
+	</div>
+</a>

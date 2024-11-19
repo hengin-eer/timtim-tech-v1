@@ -1,35 +1,35 @@
 ---
-import { contentfulClient } from "../../lib/contentful.js";
+import { getCollection } from "astro:content";
 import BlogCard from "../BlogCard.astro";
 import SectionHeading from "./SectionHeading.astro";
 
-const entries = await contentfulClient.getEntries({
-    content_type: "blog",
-});
+const blogContents = await getCollection("blog");
 
-const blogs = entries.items;
+const blogs = blogContents.sort((a, b) => {
+	return b.data.updatedAt.localeCompare(a.data.updatedAt);
+});
 ---
 
 <section id="blog">
-    <div class="w-min">
-        <SectionHeading title="Blogs" />
-        <p class="mt-4 ml-4 text-lg leading-[2]">
-            物書きみたいなことをしています。<br />
-            最近触った関連の技術記事や、ふと思ったことポエムなどを徒然なるままにタイプしていきます。
-        </p>
-    </div>
-    <div class="pt-10 overflow-x-scroll">
-        <ul class="w-max px-4 flex items-start gap-5">
-            {
-                blogs.map((item, i) => (
-                    <BlogCard
-                        title={item.fields.title}
-                        slug={item.fields.slug}
-                        updatedAt={new Date(item.sys.updatedAt).toLocaleDateString()}
-                        eyecatch={item.fields.eyecatch.fields.file.url} 
-                    /> // eyecatchでエラー出ているけど、フィールドは存在する
-                ))
-            }
-        </ul>
-    </div>
+	<div>
+		<SectionHeading title="Blogs" />
+		<p class="px-5 py-5 text-lg leading-[2]">
+			物書きみたいなことをしています。<br />
+			最近触った関連の技術記事や、ふと思ったことポエムなどを徒然なるままにタイプしていきます。
+		</p>
+	</div>
+	<div class="px-10 py-20">
+		<ul class="w-full grid gap-16 md:gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+			{
+				blogs.map((item) => (
+					<BlogCard
+						title={item.data.title}
+						slug={item.slug}
+						updatedAt={new Date(item.data.updatedAt).toLocaleDateString()}
+						eyecatch={item.data.cover.src}
+					/> // eyecatchでエラー出ているけど、フィールドは存在する
+				))
+			}
+		</ul>
+	</div>
 </section>
