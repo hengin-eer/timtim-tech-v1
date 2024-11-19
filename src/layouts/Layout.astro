@@ -25,8 +25,8 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<div class="wrapper">
+	<body class="min-h-[100dvh]">
+		<div class="relative min-h-[100dvh]">
 			<Header />
 			<slot />
 			<Footer />
@@ -66,9 +66,6 @@ const { title } = Astro.props;
 			Bitstream Vera Sans Mono,
 			Courier New,
 			monospace;
-	}
-	.wrapper {
-		position: relative;
 	}
 	.font-hina {
 		font-family: 'Hina Mincho';
