@@ -9,7 +9,6 @@ export default defineConfig({
     shikiConfig: {
       theme: "github-dark",
       langs: [],
-      wrap: true,
     },
   },
   site: "https://hengin-eer.github.io/",
