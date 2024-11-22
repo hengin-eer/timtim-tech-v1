@@ -2,24 +2,33 @@
 import { getCollection } from "astro:content";
 import BlogCard from "../BlogCard.astro";
 import SectionHeading from "./SectionHeading.astro";
+import Icon from "astro-iconify";
 
 const blogContents = await getCollection("blog");
 
-const blogs = blogContents.sort((a, b) => {
-	return b.data.updatedAt.localeCompare(a.data.updatedAt);
-});
+const blogs = blogContents
+	.sort((a, b) => b.data.updatedAt.localeCompare(a.data.updatedAt))
+	.slice(0, 6);
 ---
 
-<section id="blog">
-	<div>
+<section id="blog" class="px-10 pt-10">
+	<div class="text-center">
 		<SectionHeading title="Blogs" />
-		<p class="px-5 py-5 text-lg leading-[2]">
+		<p class="py-5 text-lg leading-[2]">
 			物書きみたいなことをしています。<br />
 			最近触った関連の技術記事や、ふと思ったことポエムなどを徒然なるままにタイプしていきます。
 		</p>
+		<div class="hidden sm:block w-max mx-auto pt-5">
+			<a class="flex items-center gap-1 text-lg text-black hover:text-primary-dark-green transition" href="/blog">
+				<Icon name="material-symbols-light:arrow-circle-right-outline" class="size-7" />
+				<p>全コンテンツを見る</p>
+			</a>
+		</div>
 	</div>
-	<div class="px-10 py-20">
-		<ul class="w-full grid gap-16 md:gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+	<div class="pt-10 md:pt-20">
+		<ul
+			class="w-fit mx-auto grid gap-x-10 gap-y-5 md:grid-cols-2 lg:grid-cols-3"
+		>
 			{
 				blogs.map((item) => (
 					<BlogCard
@@ -27,9 +36,15 @@ const blogs = blogContents.sort((a, b) => {
 						slug={item.slug}
 						updatedAt={new Date(item.data.updatedAt).toLocaleDateString()}
 						eyecatch={item.data.cover.src}
-					/> // eyecatchでエラー出ているけど、フィールドは存在する
+					/>
 				))
 			}
 		</ul>
+	</div>
+	<div class="sm:hidden pt-5 pb-10">
+		<a class="flex items-center gap-1 text-lg text-black hover:text-primary-dark-green transition" href="/blog">
+			<Icon name="material-symbols-light:arrow-circle-right-outline" class="size-7" />
+			<p>全コンテンツを見る</p>
+		</a>
 	</div>
 </section>
