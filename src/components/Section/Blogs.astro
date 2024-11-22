@@ -1,35 +1,62 @@
 ---
-import { contentfulClient } from "../../lib/contentful.js";
+import { getCollection } from "astro:content";
 import BlogCard from "../BlogCard.astro";
 import SectionHeading from "./SectionHeading.astro";
+import Icon from "astro-iconify";
 
-const entries = await contentfulClient.getEntries({
-    content_type: "blog",
-});
+const blogContents = await getCollection("blog");
 
-const blogs = entries.items;
+const blogs = blogContents
+	.sort((a, b) => b.data.updatedAt.localeCompare(a.data.updatedAt))
+	.slice(0, 6);
 ---
 
-<section id="blog">
-    <div class="w-min">
-        <SectionHeading title="Blogs" />
-        <p class="mt-4 ml-4 text-lg leading-[2]">
-            物書きみたいなことをしています。<br />
-            最近触った関連の技術記事や、ふと思ったことポエムなどを徒然なるままにタイプしていきます。
-        </p>
-    </div>
-    <div class="pt-10 overflow-x-scroll">
-        <ul class="w-max px-4 flex items-start gap-5">
-            {
-                blogs.map((item, i) => (
-                    <BlogCard
-                        title={item.fields.title}
-                        slug={item.fields.slug}
-                        updatedAt={new Date(item.sys.updatedAt).toLocaleDateString()}
-                        eyecatch={item.fields.eyecatch.fields.file.url} 
-                    /> // eyecatchでエラー出ているけど、フィールドは存在する
-                ))
-            }
-        </ul>
-    </div>
+<section id="blog" class="px-10 pt-10 pb-20">
+	<div class="text-center">
+		<SectionHeading title="Blogs" />
+		<p class="py-5 text-lg leading-[2]">
+			物書きみたいなことをしています。<br />
+			最近触った関連の技術記事や、ふと思ったことポエムなどを徒然なるままにタイプしていきます。
+		</p>
+		<div class="hidden sm:block w-max mx-auto pt-5">
+			<a
+				class="flex items-center gap-1 text-lg text-black hover:text-primary-dark-green transition"
+				href="/blog"
+			>
+				<Icon
+					name="material-symbols-light:arrow-circle-right-outline"
+					class="size-7"
+				/>
+				<p>全コンテンツを見る</p>
+			</a>
+		</div>
+	</div>
+	<div class="pt-10 md:pt-20">
+		<ul
+			class="w-fit mx-auto grid gap-x-10 gap-y-5 md:grid-cols-2 lg:grid-cols-3"
+		>
+			{
+				blogs.map((item) => (
+					<BlogCard
+						title={item.data.title}
+						slug={item.slug}
+						updatedAt={new Date(item.data.updatedAt).toLocaleDateString()}
+						eyecatch={item.data.cover.src}
+					/>
+				))
+			}
+		</ul>
+	</div>
+	<div class="sm:hidden pt-5 pb-10">
+		<a
+			class="flex items-center gap-1 text-lg text-black hover:text-primary-dark-green transition"
+			href="/blog"
+		>
+			<Icon
+				name="material-symbols-light:arrow-circle-right-outline"
+				class="size-7"
+			/>
+			<p>全コンテンツを見る</p>
+		</a>
+	</div>
 </section>
