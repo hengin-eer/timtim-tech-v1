@@ -6,8 +6,8 @@ import HERO_IMG from "../../../public/hero.jpg"
 const profileTags = ["🧑‍🎓 Colledge Student", "💻 Programmer", "🐟 Fish lover"];
 ---
 
-<section class="max-w-5xl mx-auto my-10 lg:my-[80px] px-10 lg:px-16 flex flex-col-reverse lg:flex-row items-center gap-y-16 lg:justify-between">
-    <div class="w-min">
+<section class="max-w-5xl mx-auto my-10 lg:my-[80px] px-10 lg:px-16 flex flex-col-reverse lg:flex-row items-center gap-y-10 lg:justify-between">
+    <div class="lg:w-min">
         <h1 class="w-max text-4xl sm:text-5xl leading-[1.6] font-hina">
             ようこそ、<br />
             Tim daikの世界へ
@@ -17,7 +17,7 @@ const profileTags = ["🧑‍🎓 Colledge Student", "💻 Programmer", "🐟 Fi
         </div>
         <ContactButton />
     </div>
-    <div class="relative">
+    <div class="relative mx-8 lg:mx-0">
         <Image class="w-[400px] aspect-[10/12] object-cover hero-image" src={HERO_IMG} alt="Timdaik's picture" />
         <img class="w-[400px] aspect-[10/12] absolute top-0 left-[50%] translate-x-[-50%]" src={"/hero-image-subframe.svg"} alt="subframe" />
     </div>
