@@ -10,7 +10,7 @@ const { title, slug, updatedAt, eyecatch } = Astro.props;
 ---
 
 <a
-	class="w-full md:max-w-[480px] flex flex-col justify-start gap-6"
+	class="w-full md:max-w-[400px] flex flex-col justify-start gap-6"
 	href={`/blog/${slug}`}
 >
 	<img
@@ -18,7 +18,7 @@ const { title, slug, updatedAt, eyecatch } = Astro.props;
 		src={eyecatch}
 		alt={title}
 	/>
-	<div>
+	<div class="pb-10">
 		<p class="mb-2 text-sm">{updatedAt}</p>
 		<h3 class="text-xl">{title}</h3>
 	</div>
