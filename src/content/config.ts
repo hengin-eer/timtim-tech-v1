@@ -8,7 +8,17 @@ const blogCollection = defineCollection({
 			title: z.string(),
 			author: z.string(),
 			updatedAt: z.string(),
-			tag: z.array(z.string()),
+			tag: z.array(
+				z.enum([
+					"ニュース",
+					"日常",
+					"ポエム",
+					"振り返り",
+					"イベント",
+					"Tech",
+					"教養",
+				])
+			),
 		}),
 });
 
