@@ -12,6 +12,7 @@ export default defineConfig({
     },
   },
   site: "https://hengin-eer.github.io/",
+	base: '/',
   vite: {
     optimizeDeps: {
       noDiscovery: true,
